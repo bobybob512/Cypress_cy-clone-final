@@ -11,5 +11,17 @@
         cy.contains(/Successfully subbed: abc@gmail.com!/i).should('exist')
         cy.wait(3000)
         cy.contains(/Successfully subbed: abc@gmail.com!/i).should('not.exist')
+
+        cy.contains(/Invalid email: abc@gmail.io!/i).should('not.exist')
+        cy.get('@subscribe-input').type('abc@gmail.io')
+        cy.getDataTest('subscribe-button').click()
+        cy.contains(/Invalid email: abc@gmail.io!/i).should('exist')
+        cy.wait(3000)
+        cy.contains(/Invalid email: abc@gmail.io!/i).should('not.exist')
+
+        cy.contains(/fail!/i).should('not.exist')
+        cy.getDataTest('subscribe-button').click()
+        cy.contains(/fail!/i).should('exist')
+        
     })
  })
