@@ -15,4 +15,16 @@ describe('Various examples', () =>{
         cy.getDataTest('nav-examples').click()
         cy.location("pathname").should("equal", "/examples")
     })
+    it.only('intercepts', () => {
+        //cy.intercept("POST", 'http://localhost:3000/examples')
+            //body: {
+            //    message: 'successfully intercepted request'
+            //}
+            cy.intercept("POST", 'http://localhost:3000/examples', {
+            fixture: 'example.json'
+        })
+        cy.getDataTest('post-button').click()
+    //})
+    })
+    //cy.getDataTest('post-button').click()
 })
